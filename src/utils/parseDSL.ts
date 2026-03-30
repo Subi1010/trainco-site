@@ -6,13 +6,13 @@
  * ~80% fewer tokens than JSON. Parser is transparent to GridView — output
  * is identical shape to what JSON-based cards produce.
  *
- * SUPPORTED CARD TYPES (22):
+ * SUPPORTED CARD TYPES (23):
  *   Flat:      stat · callout · person-card · relationship-card
  *              incident-card · info-card · country-card
  *   Container: kpi-strip · metric-list · bullet-list · alert · timeline
  *              checklist · pipeline · ranked-list · bar-chart · donut
  *              waterfall · line-chart · org-roster · delegation-card
- *              decision-card · data-cluster
+ *              decision-card · data-cluster · accordion
  *
  * JSON FALLBACK (too complex for flat DSL):
  *   table · comparison-table · heatmap · risk-matrix
@@ -21,6 +21,7 @@
  * ITEM PREFIXES:
  *   kpi · metric · bullet · alert-item · event · check · stage · rank
  *   bar · slice · fall · point · member · delegate · option · dmetric
+ *   accordion-item
  */
 
 export { type CardDef } from '@/types/cards';
@@ -114,6 +115,9 @@ export const DSL_SCHEMA: Record<string, { pipeCount: number; fields: string[] }>
     'crow':              { pipeCount: -1, fields: ['val1','val2','...'] },
     'heatmap':           { pipeCount: 2, fields: ['title','cols (semicolon-delimited)'] },
     'hrow':              { pipeCount: -1, fields: ['rowLabel','val1','val2','...'] },
+    // Interactive
+    'accordion':         { pipeCount: 1, fields: ['title'] },
+    'accordion-item':    { pipeCount: 3, fields: ['label','content','badge'] },
 };
 
 // ── Container → item prefix map ───────────────────────────────────────────────
@@ -141,6 +145,8 @@ const CONTAINER_ITEM_PREFIXES: Record<string, string> = {
     'table':             'trow',
     'comparison-table':  'crow',
     'heatmap':           'hrow',
+    // Interactive
+    'accordion':         'accordion-item',
 };
 
 const CONTAINER_TYPES   = new Set(Object.keys(CONTAINER_ITEM_PREFIXES));
@@ -275,6 +281,12 @@ function parseItem(prefix: string, fields: string[]): Record<string, any> | null
             // First field = row label, rest = cell values
             const [rowLabel, ...vals] = fields;
             return { rowLabel: n(rowLabel) ?? '', values: vals.map(v => f(v)) };
+        }
+        case 'accordion-item': {
+            const [label, content, badge] = fields;
+            const item: Record<string, any> = { label: n(label) ?? '', content: n(content) ?? '' };
+            if (n(badge)) item.badge = n(badge);
+            return item;
         }
         default:
             return null;
@@ -493,6 +505,9 @@ function flushContainer(
             );
             break;
         }
+        case 'accordion':
+            card.items = items;
+            break;
     }
 
     cards.push(card);

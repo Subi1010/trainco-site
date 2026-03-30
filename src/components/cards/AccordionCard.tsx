@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+const C = 'var(--theme-chart-line)';
 const getColor = (opacity: number) => `color-mix(in srgb, var(--theme-chart-line) ${opacity}%, transparent)`;
 
 interface AccordionItem {

@@ -115,6 +115,8 @@ const CARD_SIZE: Record<string, number> = {
     'decision-card': 2, 'delegation-card': 2,
     // Cross-Domain Intelligence
     'relationship-card': 2, 'country-card': 2,
+    // Interactive
+    'accordion': 2,
 };
 
 function getRowWeight(rowCards: CardDef[]): number {
