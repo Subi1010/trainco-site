@@ -22,12 +22,12 @@ import {
     DecisionCard, DelegationCard,
     // Cross-Domain Intelligence (4)
     RelationshipCard, CountryCard, DataClusterCard, CalendarCard,
-    // Interactive (1)
-    AccordionCard,
+    // Interactive (2)
+    AccordionCard, AvatarCard,
 } from '@/components/cards';
 
 /* ═══════════════════════════════════════════════════════════
-   GridView — Composable Grid Template (31 Card Types)
+   GridView — Composable Grid Template (32 Card Types)
    
    A single template that accepts a layout code and an array
    of card definitions. The tele fills it dynamically for any
@@ -44,7 +44,7 @@ interface GridViewProps {
     onLogoClick?: () => void;
 }
 
-/* ═══ Card Renderer — 31 Card Types ═══ */
+/* ═══ Card Renderer — 32 Card Types ═══ */
 
 const CARD_MAP: Record<string, React.FC<any>> = {
     // Core Data (9)
@@ -86,8 +86,9 @@ const CARD_MAP: Record<string, React.FC<any>> = {
     'country-card': CountryCard,
     'data-cluster': DataClusterCard,
     'calendar': CalendarCard,
-    // Interactive (1)
+    // Interactive (2)
     'accordion': AccordionCard,
+    'avatar-card': AvatarCard,
     // Aliases — common hallucinated type names
     'profile-roster': OrgRoster,
     'area-chart': LineChart,
@@ -117,6 +118,7 @@ const CARD_SIZE: Record<string, number> = {
     'relationship-card': 2, 'country-card': 2,
     // Interactive
     'accordion': 2,
+    'avatar-card': 2,
 };
 
 function getRowWeight(rowCards: CardDef[]): number {

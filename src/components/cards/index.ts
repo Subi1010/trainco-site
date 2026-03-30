@@ -44,5 +44,6 @@ export { CountryCard } from './CountryCard';
 export { DataClusterCard } from './DataClusterCard';
 export { CalendarCard } from './CalendarCard';
 
-// Interactive (1)
+// Interactive (2)
 export { AccordionCard } from './AccordionCard';
+export { AvatarCard } from './AvatarCard';
