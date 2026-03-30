@@ -5,6 +5,7 @@ const getColor = (opacity: number) => `color-mix(in srgb, var(--theme-chart-line
 
 interface AvatarCardProps {
     question: string;
+    avatarUrl?: string;
     progressStep?: number;
     progressTotal?: number;
     detail?: string;
@@ -12,6 +13,7 @@ interface AvatarCardProps {
 
 export const AvatarCard: React.FC<AvatarCardProps> = ({
     question,
+    avatarUrl,
     progressStep = 0,
     progressTotal = 4,
     detail,
@@ -34,6 +36,20 @@ export const AvatarCard: React.FC<AvatarCardProps> = ({
                         }}
                     />
                 ))}
+            </div>
+
+            {/* ── Avatar ────────────────────────────────────────────────────── */}
+            <div className="flex justify-center shrink-0">
+                <div
+                    className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center"
+                    style={{ backgroundColor: getColor(8), border: `2px solid ${getColor(20)}` }}
+                >
+                    <img
+                        src={avatarUrl ?? '/avatar/avatar-glow.png'}
+                        alt="avatar"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
             </div>
 
             {/* ── Question pill ─────────────────────────────────────────────── */}

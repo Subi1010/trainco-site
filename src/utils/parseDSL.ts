@@ -118,7 +118,7 @@ export const DSL_SCHEMA: Record<string, { pipeCount: number; fields: string[] }>
     // Interactive
     'accordion':         { pipeCount: 1, fields: ['title'] },
     'accordion-item':    { pipeCount: 3, fields: ['label','content','badge'] },
-    'avatar-card':       { pipeCount: 4, fields: ['question','progressStep','progressTotal','detail'] },
+    'avatar-card':       { pipeCount: 5, fields: ['question','avatarUrl','progressStep','progressTotal','detail'] },
 };
 
 // ── Container → item prefix map ───────────────────────────────────────────────
@@ -336,8 +336,9 @@ function parseFlatCard(type: string, fields: string[], span?: 'full'): CardDef |
             return Object.assign(card, { imageUrl: n(imageUrl), caption: n(caption), subtitle: n(subtitle) });
         }
         case 'avatar-card': {
-            const [question, progressStepStr, progressTotalStr, ...rest] = fields;
+            const [question, avatarUrl, progressStepStr, progressTotalStr, ...rest] = fields;
             const item: CardDef = Object.assign(card, { question: n(question) ?? '' });
+            if (n(avatarUrl))        item.avatarUrl     = n(avatarUrl);
             if (n(progressStepStr))  item.progressStep  = parseInt(n(progressStepStr)  ?? '0', 10);
             if (n(progressTotalStr)) item.progressTotal = parseInt(n(progressTotalStr) ?? '4', 10);
             const detail = n(rest.join('|'));
