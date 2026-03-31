@@ -42,6 +42,9 @@ export type SiteFunctionEntry = {
  * Each key is the camelCase function name that the agent will use to call it.
  * The discovery service reads this manifest on deployment to extract metadata
  * and validate schemas.
+ *
+ * Mobeus expects `site-functions/register.ts` at the **repo root** — that file
+ * re-exports this module so the dashboard can discover `setTheme` + `navigateToSection`.
  */
 export const siteFunctionManifest: Record<string, SiteFunctionEntry> = {
   setTheme: {
