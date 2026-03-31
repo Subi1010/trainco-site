@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import { BottomNav } from "./BottomNav";
 import { TeleSpeechBubble } from "./TeleSpeechBubble";
 import { DevToolbar } from "./DevToolbar";
@@ -116,24 +116,26 @@ export function BaseLayout({ children, sections = [] }: BaseLayoutProps) {
   void connectionState;
 
   return (
-    <div data-testid="base-layout" className="relative w-screen h-[100svh] overflow-hidden bg-[var(--bg)]">
-
-      <motion.div
+    <div
+      data-testid="base-layout"
+      className="relative isolate w-screen h-[100svh] overflow-hidden bg-[var(--bg)]"
+    >
+      {/*
+        Avatar must stay at z-index >= 0. Negative z-index paints *behind* this element's
+        background, which hid Jaya entirely when connected. Content sits above (z-1); edge
+        gradients (z-10) still vignette to --bg for readability.
+      */}
+      <div
         data-testid="base-layout-avatar-photo"
-        className="absolute inset-0 overflow-hidden"
-        animate={{ zIndex: !connected ? 1 : -2 }}
-        transition={{
-          delay: 0.25,
-          duration: 0.2,
-          ease: "easeInOut",
-        }}
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       >
         <img
           src="/Jaya.png"
           alt="trAIn — AI career concierge"
-          className="absolute right-[0px] top-[-38px] h-[102%] w-auto max-w-none pointer-events-none select-none"
+          className="absolute right-0 top-[-38px] h-[102%] w-auto max-w-none select-none"
+          draggable={false}
         />
-      </motion.div>
+      </div>
 
       <div
         data-testid="base-layout-gradient-bottom"
@@ -149,7 +151,10 @@ export function BaseLayout({ children, sections = [] }: BaseLayoutProps) {
       {!chatMode && <TeleSpeechBubble />}
 
       {!chatMode && (
-        <div data-testid="base-layout-content" className="absolute inset-0">
+        <div
+          data-testid="base-layout-content"
+          className="absolute inset-0 z-[1] flex min-h-0 flex-col"
+        >
           {children}
         </div>
       )}
