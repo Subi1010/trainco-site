@@ -23,7 +23,7 @@ import { useVoiceActions } from "@/hooks/useVoiceActions";
 import { categorizeFit, type FitCategory } from "@/utils/categorizeFit";
 import { FitScoreBadge } from "@/components/ui/FitScoreBadge";
 import { useMcpCache } from "@/contexts/McpCacheContext";
-import { resolveJobsArray } from "@/lib/mcpBridge";
+import { resolveJobsArray } from "@/platform/mcpBridge";
 import { getSavedJobById } from "@/mocks/savedJobsData";
 import type { BackendSkillGap } from "@/types/flow";
 import { LearningPathTemplate } from "@/components/templates/LearningPathTemplate";

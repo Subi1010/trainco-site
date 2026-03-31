@@ -1,6 +1,6 @@
 'use client';
 
-import { useVoiceSessionStore } from '@/lib/stores/voice-session-store';
+import { useVoiceSessionStore } from '@/platform/stores/voice-session-store';
 import GridView from '@/components/cards/GridView';
 import { LAYOUT_MAP } from '@/components/layouts';
 import { Suspense, useCallback, useMemo } from 'react';

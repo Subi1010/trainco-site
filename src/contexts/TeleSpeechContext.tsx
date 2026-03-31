@@ -15,7 +15,7 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import { useVoiceSessionStore } from "@/lib/stores/voice-session-store";
+import { useVoiceSessionStore } from "@/platform/stores/voice-session-store";
 
 export interface TeleSpeechState {
   speech: string | null;

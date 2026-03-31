@@ -3,7 +3,7 @@ import { useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { X, MapPin, Play, Ban, Check } from "lucide-react";
 import { useMcpCache } from "@/contexts/McpCacheContext";
-import { resolveJobsArray } from "@/lib/mcpBridge";
+import { resolveJobsArray } from "@/platform/mcpBridge";
 import { notifyTele } from "@/utils/teleUtils";
 import { sendJobClosedIntent } from "@/utils/teleIntent";
 import { useSpeechFallbackNudge } from "@/hooks/useSpeechFallbackNudge";

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Mic, MicOff, MessageCircle, X, ArrowRight } from 'lucide-react';
-import { useVoiceSessionStore } from '@/lib/stores/voice-session-store';
+import { useVoiceSessionStore } from '@/platform/stores/voice-session-store';
 import { assets } from '@/assets';
 import { playUISound, playGlassSound } from '@/utils/soundGenerator';
 

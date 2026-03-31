@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from "react";
-import { useVoiceSessionStore } from "@/lib/stores/voice-session-store";
+import { useVoiceSessionStore } from "@/platform/stores/voice-session-store";
 
 type TranscriptCallback = (transcript: string) => void;
 const subscribers = new Set<TranscriptCallback>();

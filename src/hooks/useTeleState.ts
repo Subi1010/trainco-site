@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { teleState, type TeleConnectionState, type TeleActiveMode } from "@/lib/teleState";
+import { teleState, type TeleConnectionState, type TeleActiveMode } from "@/platform/teleState";
 
 interface TeleStateResult {
   connected: boolean;

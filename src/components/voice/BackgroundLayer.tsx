@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useVoiceSessionStore } from '@/lib/stores/voice-session-store';
+import { useVoiceSessionStore } from '@/platform/stores/voice-session-store';
 import { assets } from '@/assets';
 
 export function BackgroundLayer() {

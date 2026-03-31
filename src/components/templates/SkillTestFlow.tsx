@@ -2,7 +2,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { X, ChevronRight, Upload, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { completeLearning, prefetchAfterLearning, fetchSkills, fetchMarketRelevance, fetchCareerGrowth } from "@/lib/mcpBridge";
+import { completeLearning, prefetchAfterLearning, fetchSkills, fetchMarketRelevance, fetchCareerGrowth } from "@/platform/mcpBridge";
 import { notifyTele } from "@/utils/teleUtils";
 import { useSpeechFallbackNudge } from "@/hooks/useSpeechFallbackNudge";
 import { useMcpCache } from "@/contexts/McpCacheContext";

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, CheckCircle2, Lock, Circle, BookOpen, Loader2, Trophy } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { completeLearning } from "@/lib/mcpBridge";
+import { completeLearning } from "@/platform/mcpBridge";
 import { notifyTele } from "@/utils/teleUtils";
 
 interface LearningPathTemplateProps {

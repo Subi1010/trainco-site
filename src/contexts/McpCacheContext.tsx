@@ -6,7 +6,7 @@ import {
   unregisterCacheAccessors,
   type McpCache,
   EMPTY_CACHE,
-} from "@/lib/mcpCacheBridge";
+} from "@/platform/mcpCacheBridge";
 
 interface McpCacheContextValue {
   cache: McpCache;

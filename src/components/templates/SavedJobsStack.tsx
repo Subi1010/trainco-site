@@ -13,7 +13,7 @@ import { useSpeechFallbackNudge } from "@/hooks/useSpeechFallbackNudge";
 import { useVoiceTranscriptIntent } from "@/hooks/useVoiceTranscriptIntent";
 import { normalizeVoiceText, resolveVoiceMatchForSavedJobsBubbles } from "@/utils/voiceMatch";
 import { setLastBrowseScreen, navigateClientToJobSearchSheet } from "@/utils/clientDashboardNavigate";
-import { cn } from "@/lib/utils";
+import { cn } from "@/platform/utils";
 
 /** Same contract as GlassmorphicOptions — labels come from `search_knowledge` / journey payloads, not hardcoded in the app. */
 function normalizeBubbles(raw: unknown): BubbleOption[] {

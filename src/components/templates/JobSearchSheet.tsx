@@ -11,7 +11,7 @@ import { notifyTele, informTele } from "@/utils/teleUtils";
 import { useSpeechFallbackNudge } from "@/hooks/useSpeechFallbackNudge";
 import { useVoiceActions } from "@/hooks/useVoiceActions";
 import type { JobListing } from "@/types/flow";
-import { cn } from "@/lib/utils";
+import { cn } from "@/platform/utils";
 import { navigateClientToDashboardLanding, setLastBrowseScreen, navigateBackFromJobSearch } from "@/utils/clientDashboardNavigate";
 
 const TABS: { category: FitCategory; label: string }[] = [

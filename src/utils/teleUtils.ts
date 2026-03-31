@@ -4,7 +4,7 @@
  */
 
 import { informTele } from "@/utils/informTele";
-import { useVoiceSessionStore } from "@/lib/stores/voice-session-store";
+import { useVoiceSessionStore } from "@/platform/stores/voice-session-store";
 
 export type NotifyTeleOptions = {
   skipNavigateDrift?: boolean;

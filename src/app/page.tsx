@@ -9,8 +9,8 @@ import { CurrentSectionProvider } from "@/contexts/CurrentSectionContext";
 import { ChatHistoryProvider } from "@/contexts/ChatHistoryContext";
 import { EntryPoint } from "@/components/EntryPoint";
 import { ConnectingScreen } from "@/components/ConnectingScreen";
-import { connectTele, syncTeleState } from "@/lib/teleConnect";
-import { teleState } from "@/lib/teleState";
+import { connectTele, syncTeleState } from "@/platform/teleConnect";
+import { teleState } from "@/platform/teleState";
 
 type Journey = "landing" | "connecting" | "talent";
 

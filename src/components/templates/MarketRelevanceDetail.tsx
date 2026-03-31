@@ -17,7 +17,7 @@ import {
   navigateClientToDashboardLanding,
   navigateClientToMarketRelevanceSheet,
 } from "@/utils/clientDashboardNavigate";
-import { cn } from "@/lib/utils";
+import { cn } from "@/platform/utils";
 
 interface MarketRelevanceDetailProps {
   rawMarketRelevance?: Record<string, unknown>;

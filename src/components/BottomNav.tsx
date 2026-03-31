@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { teleState } from "@/lib/teleState";
-import type { TeleConnectionState, TeleActiveMode } from "@/lib/teleState";
-import { syncTeleState, disconnectTele } from "@/lib/teleConnect";
+import { cn } from "@/platform/utils";
+import { teleState } from "@/platform/teleState";
+import type { TeleConnectionState, TeleActiveMode } from "@/platform/teleState";
+import { syncTeleState, disconnectTele } from "@/platform/teleConnect";
 
 interface BottomNavProps {
   className?: string;

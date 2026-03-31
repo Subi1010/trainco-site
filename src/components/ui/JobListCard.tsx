@@ -3,7 +3,7 @@ import { MapPin, TrendingUp, Bookmark } from "lucide-react";
 import { FitScoreBadge } from "@/components/ui/FitScoreBadge";
 import { FitCategoryPill } from "@/components/ui/FitCategoryPill";
 import type { FitCategory } from "@/utils/categorizeFit";
-import { cn } from "@/lib/utils";
+import { cn } from "@/platform/utils";
 
 const SalaryIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="shrink-0">

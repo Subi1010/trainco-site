@@ -16,8 +16,8 @@ import {
   syncLearningState,
   resolveJobsArray,
   patchSiteFunctions,
-} from "@/lib/mcpBridge";
-import { readCache, loadIntoCache as loadIntoCacheBridge } from "@/lib/mcpCacheBridge";
+} from "@/platform/mcpBridge";
+import { readCache, loadIntoCache as loadIntoCacheBridge } from "@/platform/mcpCacheBridge";
 import { useTeleSpeech } from "@/hooks/useTeleSpeech";
 import { EVENT_NAVIGATE_POP_JOB_BROWSE } from "@/utils/teleUtils";
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { MapPin } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/platform/utils";
 import type { JobListing } from "@/types/flow";
 import { FitScoreBadge } from "@/components/ui/FitScoreBadge";
 import { FitCategoryPill } from "@/components/ui/FitCategoryPill";

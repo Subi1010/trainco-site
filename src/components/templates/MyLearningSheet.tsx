@@ -4,7 +4,7 @@ import { X, ChevronDown, ChevronUp, Video, BookOpen, Terminal, ChevronRight, Cop
 import { motion, AnimatePresence } from "motion/react";
 import { LearningCard } from "@/components/ui/LearningCard";
 import { BaseSheetLayout } from "@/components/ui/BaseSheetLayout";
-import { completeLearning, prefetchAfterLearning, fetchSkills, fetchMarketRelevance, fetchCareerGrowth } from "@/lib/mcpBridge";
+import { completeLearning, prefetchAfterLearning, fetchSkills, fetchMarketRelevance, fetchCareerGrowth } from "@/platform/mcpBridge";
 import { notifyTele } from "@/utils/teleUtils";
 import { useSpeechFallbackNudge } from "@/hooks/useSpeechFallbackNudge";
 import { useVoiceActions, type VoiceAction } from "@/hooks/useVoiceActions";
