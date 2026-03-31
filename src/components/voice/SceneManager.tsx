@@ -26,7 +26,6 @@ export function SceneManager() {
   const sceneHistory = useVoiceSessionStore((s) => s.sceneHistory);
   const tellAgent = useVoiceSessionStore((s) => s.tellAgent);
   const avatarVideoTrack = useVoiceSessionStore((s) => s.avatarVideoTrack);
-  const avatarEnabled = useVoiceSessionStore((s) => s.avatarEnabled);
   const avatarVisible = useVoiceSessionStore((s) => s.avatarVisible);
   const skeletonLayout = useVoiceSessionStore((s) => s.skeletonLayout);
 
@@ -57,7 +56,7 @@ export function SceneManager() {
   return (
     <div id="scene-root" className="relative flex flex-col w-full h-full min-h-0 text-white">
       {/* Avatar background layer */}
-      {avatarEnabled && avatarVisible && avatarVideoTrack && (
+      {avatarVisible && avatarVideoTrack && (
         <div className="absolute inset-0 z-0 opacity-30">
           <video
             ref={(el) => {

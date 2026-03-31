@@ -12,6 +12,7 @@ import { useTeleState } from "@/hooks/useTeleState";
 import { useCurrentSection } from "@/contexts/CurrentSectionContext";
 import { useVisualViewportBottomInset } from "@/hooks/useVisualViewportBottomInset";
 import type { GenerativeSection } from "@/types/flow";
+import { BackgroundLayer } from "@/components/voice/BackgroundLayer";
 
 const ONBOARDING_TEMPLATES = new Set([
   "EmptyScreen", "WelcomeLanding", "GlassmorphicOptions", "MultiSelectOptions",
@@ -121,20 +122,11 @@ export function BaseLayout({ children, sections = [] }: BaseLayoutProps) {
       className="relative isolate w-screen h-[100svh] overflow-hidden bg-[var(--bg)]"
     >
       {/*
-        Avatar must stay at z-index >= 0. Negative z-index paints *behind* this element's
-        background, which hid Jaya entirely when connected. Content sits above (z-1); edge
-        gradients (z-10) still vignette to --bg for readability.
+        LiveKit avatar video + hero still (see BackgroundLayer). Uses z-0 inside isolate so
+        it paints above this shell’s background. Replace files under public/avatar/ for art.
       */}
-      <div
-        data-testid="base-layout-avatar-photo"
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-      >
-        <img
-          src="/Jaya.png"
-          alt="trAIn — AI career concierge"
-          className="absolute right-0 top-[-38px] h-[102%] w-auto max-w-none select-none"
-          draggable={false}
-        />
+      <div data-testid="base-layout-avatar-photo" className="absolute inset-0 z-0 overflow-hidden">
+        <BackgroundLayer />
       </div>
 
       <div
