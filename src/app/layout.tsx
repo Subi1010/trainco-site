@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { FlowProvider } from '@/contexts/FlowContext';
+import { McpCacheProvider } from '@/contexts/McpCacheContext';
+import { TeleSpeechProvider } from '@/contexts/TeleSpeechContext';
 
 const agentName = process.env.NEXT_PUBLIC_AGENT_NAME || 'trAIn';
 
@@ -25,9 +26,11 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-[#0a0a0a]">
-        <FlowProvider>
-          {children}
-        </FlowProvider>
+        <McpCacheProvider>
+          <TeleSpeechProvider>
+            {children}
+          </TeleSpeechProvider>
+        </McpCacheProvider>
       </body>
     </html>
   );
