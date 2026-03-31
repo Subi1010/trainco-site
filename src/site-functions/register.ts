@@ -19,6 +19,7 @@
  */
 
 import setTheme from './setTheme';
+import navigateToSection from './navigateToSection';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -60,6 +61,45 @@ export const siteFunctionManifest: Record<string, SiteFunctionEntry> = {
     },
     defaults: { theme: 'system' },
   },
+
+  navigateToSection: {
+    fn: navigateToSection,
+    description:
+      'trAIn Career Concierge UI navigation (v2). Replaces the visible screen with one or more generative templates. ' +
+      'English only. Pass a single JSON object: badge, title, subtitle (optional strings), generativeSubsections (array of { id, templateId, props, _update? }). ' +
+      'Each call normally replaces the screen; Dashboard pairs with ProfileSheet, detail sheets, Job flows, etc. ' +
+      'Use speech + this tool on UI-transition turns (never tool-only). TeleSpeechBubble is persistent — questions are spoken, not passed as props. ' +
+      'Wait for user signals after GlassmorphicOptions, MultiSelectOptions, TextInput, RegistrationForm, CandidateSheet, CardStack, SavedJobsStack. ' +
+      '_update: true merges props into the existing section with the same id/templateId. ' +
+      'Omit optional props (never null). Strict JSON. ' +
+      'Reserved _sessionEstablished is stripped by the frontend. ' +
+      'Never pass cache-backed props: rawSkillProgression, rawJobs, rawMarketRelevance, rawCareerGrowth, requiredSkills, recommendedSkills, skillGaps, or full candidate profile fields — ' +
+      'CandidateSheet: candidateId only; JobDetailSheet: jobId, title, company, fitCategory. ' +
+      'Templates include: EmptyScreen, WelcomeLanding, GlassmorphicOptions, MultiSelectOptions, TextInput, RegistrationForm, LoadingGeneral, LoadingLinkedIn, CardStack, SavedJobsStack, Dashboard, ProfileSheet, SkillCoverageSheet, MarketRelevanceSheet, CareerGrowthSheet, SkillsDetail, MarketRelevanceDetail, CareerGrowthDetail, TargetRoleSheet, MyLearningSheet, JobSearchSheet, JobDetailSheet, EligibilitySheet, CloseGapSheet, JobApplicationsSheet, PastApplicationsSheet, CandidateSheet.',
+    schema: {
+      type: 'object',
+      properties: {
+        badge: { type: 'string', description: 'Context label shown in chrome' },
+        title: { type: 'string', description: 'Main heading' },
+        subtitle: { type: 'string', description: 'Subheading' },
+        generativeSubsections: {
+          type: 'array',
+          description: 'Sections to render (replaces or merges per _update)',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              templateId: { type: 'string', description: 'Template id e.g. Dashboard, ProfileSheet, GlassmorphicOptions' },
+              props: { type: 'object', additionalProperties: true },
+              _update: { type: 'boolean', description: 'If true, merge into existing section with same id/templateId' },
+            },
+            required: ['templateId'],
+          },
+        },
+      },
+      required: ['generativeSubsections'],
+    },
+  },
 };
 
 // ─── Window registration ────────────────────────────────────────────────────
@@ -82,7 +122,7 @@ declare global {
 export function registerSiteFunctions() {
   if (typeof window === 'undefined') return;
 
-  window.__siteFunctions = {};
+  window.__siteFunctions ??= {};
   for (const [name, entry] of Object.entries(siteFunctionManifest)) {
     window.__siteFunctions[name] = entry.fn;
   }

@@ -20,6 +20,7 @@ import {
 import { readCache, loadIntoCache as loadIntoCacheBridge } from "@/platform/mcpCacheBridge";
 import { useTeleSpeech } from "@/hooks/useTeleSpeech";
 import { EVENT_NAVIGATE_POP_JOB_BROWSE } from "@/utils/teleUtils";
+import { registerSiteFunctions } from "@/site-functions/register";
 
 const INITIAL_SECTIONS: GenerativeSection[] = [
   { id: "welcome", templateId: "WelcomeLanding", props: {} },
@@ -753,15 +754,18 @@ export function usePhaseFlow() {
   );
 
   useEffect(() => {
-    const siteFns = (
-      window as unknown as {
-        UIFrameworkSiteFunctions?: Record<string, unknown>;
-      }
-    ).UIFrameworkSiteFunctions;
+    registerSiteFunctions();
 
-    if (siteFns && typeof siteFns === "object") {
-      siteFns.navigateToSection = navigateToSection;
-    }
+    const w = window as unknown as {
+      UIFrameworkSiteFunctions?: Record<string, unknown>;
+      __siteFunctions?: Record<string, unknown>;
+    };
+
+    w.UIFrameworkSiteFunctions ??= {};
+    w.UIFrameworkSiteFunctions.navigateToSection = navigateToSection;
+
+    w.__siteFunctions ??= {};
+    w.__siteFunctions.navigateToSection = navigateToSection;
 
     patchSiteFunctions();
   }, [navigateToSection]);
